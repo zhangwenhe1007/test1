@@ -4,12 +4,9 @@ from kivymd.app import MDApp
 from kivymd.uix.label import MDLabel
 from kivymd.uix.screen import Screen
 
-from android.permissions import request_permissions, Permission
-
 class App(MDApp):
 
     def build(self):
-        request_permissions([Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE])
 
         screen = Screen()
 
@@ -20,6 +17,12 @@ class App(MDApp):
         screen.add_widget(label)
 
         return screen
+
+    def on_start(self,**kwargs):
+        from android.permissions import request_permissions, Permission
+        request_permissions([Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE])
+        label = MDLabel(text='Loading')
+        return label
 
 if __name__ == '__main__':
     App().run()
