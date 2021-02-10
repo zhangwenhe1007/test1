@@ -5,11 +5,12 @@ from kivymd.uix.label import MDLabel
 from kivymd.uix.screen import Screen
 
 from android.permissions import request_permissions, Permission
-request_permissions([Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE])
 
 class App(MDApp):
 
     def build(self):
+        request_permissions([Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE])
+
         screen = Screen()
 
         file = open('test.txt','r')
